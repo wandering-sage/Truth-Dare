@@ -1,0 +1,20 @@
+{
+  "name": "truth-dare",
+  "version": "1.0.0",
+  "description": "This is a Truth and Dare game on web.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wandering-sage/Truth-Dare.git"
+  },
+  "author": "Shivam Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wandering-sage/Truth-Dare/issues"
+  },
+  "homepage": "https://github.com/wandering-sage/Truth-Dare#readme"
+}
