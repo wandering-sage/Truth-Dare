@@ -3,7 +3,7 @@
 <h1>Truth-Dare</h1>
 
 <p>
-  <strong>A website to play truth & dare with friends</strong>
+  <strong>A website to play truth or dare with friends</strong>
   <br /><br />
   Build from scratch with no dependency.
 </p>
@@ -19,6 +19,7 @@
 
 ## Project in Action
 
+<img src="src/Images/Capture1.PNG">
 <img src="src/Images/capture.gif">
 
 ## Getting Started
