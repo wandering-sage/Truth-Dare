@@ -19,7 +19,7 @@
 
 ## Project in Action
 
-<img src="src/Images/capture.wmv">
+<img src="src/Images/capture.gif">
 
 ## Getting Started
 - Clone this repo and unzip the folder wherever you want.
