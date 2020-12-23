@@ -95,7 +95,12 @@ function tdPopup(person) {
 		let popup = document.querySelector(".popup");
 
 		popup.appendChild(createEl("h2", `Truth`));
-		popup.appendChild(createEl("p", "Here's a truth Ques"));
+		popup.appendChild(
+			createEl(
+				"p",
+				"What was the most embarrassing thing you've ever done on a date?"
+			)
+		);
 
 		let doneBtn = document.createElement("button", HTMLButtonElement);
 		doneBtn.innerText = "Done";
