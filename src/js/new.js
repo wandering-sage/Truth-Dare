@@ -1,3 +1,30 @@
+var truthQues = [
+	"What are your top three turn-ons?",
+	"What is your deepest darkest fear?",
+	"What is the biggest lie you have ever told?",
+	"What is the most expensive thing you have stolen?",
+	"What is the most embarrassing thing your parents have caught you doing?",
+	"Why did you break up with your last boyfriend or girlfriend?",
+	"What is the most embarrassing nickname you have ever had?",
+	"Tell us something you don’t want us to know.",
+	"Do you have any fetishes?",
+	"What's the most drunk you've ever been?",
+	"Have you ever stayed friends with someone because it benefitted you beyond just the friendship?",
+];
+var dareQues = [
+	"Show the last five people you texted and what the messages said",
+	"Say something dirty to the person on your left",
+	"Keep your eyes closed until it's your go again",
+	"Send a sext to the last person in your phonebook",
+	"Pole dance with an imaginary pole",
+	"Talk in an accent for the next 3 rounds.",
+	"Attempt to do a magic trick.",
+	"Give someone your phone and let them send one text to anyone in your contacts.",
+	"Write or draw something embarrassing somewhere on your body with a permanent marker.",
+	"Let the person to your left draw on your face with a pen.",
+	"Seduce a member of the same gender in the group.",
+	"Choose someone from the group to give you a spanking.",
+];
 var players = [];
 addPlayers();
 
@@ -98,7 +125,7 @@ function tdPopup(person) {
 		popup.appendChild(
 			createEl(
 				"p",
-				"What was the most embarrassing thing you've ever done on a date?"
+				`${truthQues[Math.floor(Math.random() * truthQues.length)]}`
 			)
 		);
 
@@ -115,7 +142,12 @@ function tdPopup(person) {
 		let popup = document.querySelector(".popup");
 
 		popup.appendChild(createEl("h2", `Dare`));
-		popup.appendChild(createEl("p", "Here's a dare Ques"));
+		popup.appendChild(
+			createEl(
+				"p",
+				`${dareQues[Math.floor(Math.random() * dareQues.length)]}`
+			)
+		);
 
 		let doneBtn = document.createElement("button", HTMLButtonElement);
 		doneBtn.innerText = "Done";
