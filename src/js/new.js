@@ -32,11 +32,11 @@ var wheelRadius = 250;
 var pi = Math.PI;
 var startAngle = 0;
 var angle = 0;
-var spinAngleStart = 0;
-var spinTimeTotal = 0;
-var spinTime = 0;
+var spinSpeed = 0;
+var totalSpinTime = 0;
+var elapsedSpinTime = 0;
 var spinTimeout;
-var arc = 0;
+var anglePerSector = 0;
 var ctx;
 const canvas = document.querySelector(".wheel");
 
@@ -211,21 +211,22 @@ function drawWheel() {
 
 	let l = players.length;
 	let wheelColors = ["#FF9900", "#006666", "#990066"];
-	arc = (2 * pi) / l;
+	anglePerSector = (2 * pi) / l;
 	let textRadius = 170;
 
 	// a loop to draw equal sectors for each player on the wheel
 	for (let i = 0; i < l; i++) {
-		var text = players[i];
-		angle = startAngle + i * arc;
+		var playerName = players[i];
+		angle = startAngle + i * anglePerSector;
 
+		// so that no two same color come together
 		if (i == l - 1 && (l % 3) - 1 == 0) {
 			i++;
 		}
 		ctx.fillStyle = wheelColors[i % 3];
 
 		ctx.beginPath();
-		ctx.arc(260, 260, wheelRadius, angle, angle + arc, false);
+		ctx.arc(260, 260, wheelRadius, angle, angle + anglePerSector, false);
 		ctx.lineTo(260, 260);
 		ctx.fill();
 
@@ -233,12 +234,12 @@ function drawWheel() {
 		ctx.save();
 		ctx.fillStyle = wheelColors[(i + 1) % 3];
 		ctx.translate(
-			250 + Math.cos(angle + arc / 2) * textRadius,
-			250 + Math.sin(angle + arc / 2) * textRadius
+			260 + Math.cos(angle + anglePerSector / 2) * textRadius,
+			260 + Math.sin(angle + anglePerSector / 2) * textRadius
 		);
-		ctx.rotate(angle + arc / 2 + Math.PI / 2 + 80);
+		ctx.rotate(angle + anglePerSector / 2);
 		ctx.font = "bold 20px Arial";
-		ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+		ctx.fillText(playerName, -ctx.measureText(playerName).width / 2, 0);
 		ctx.restore();
 	}
 
@@ -264,24 +265,25 @@ function spin() {
 	spinBtn.disabled = true;
 	addBtn.disabled = true;
 
-	spinAngleStart = Math.random() * 10 + 10;
-	spinTime = 0;
+	// spin speed is in degrees
+	spinSpeed = Math.random() * 10 + 10;
+	elapsedSpinTime = 0;
 
 	// total spin time comes b/w 3sec to 5sec
-	spinTimeTotal = Math.random() * 2000 + 3 * 1000;
+	totalSpinTime = Math.random() * 2000 + 3 * 1000;
 	rotateWheel();
 }
 
-// this function will run in loop till spinTime exceeds total spin time
+// this function will run in loop till elapsedSpinTime exceeds total spin time
 function rotateWheel() {
-	spinTime += 10;
-	if (spinTime >= spinTimeTotal) {
+	elapsedSpinTime += 10;
+	if (elapsedSpinTime >= totalSpinTime) {
 		stopWheelAndGetPlayer();
 		return;
 	}
 	// to slow down the wheel near end by reducing the angle of rotation per loop
 	var spinAngle =
-		spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+		spinSpeed - easeOut(elapsedSpinTime, 0, spinSpeed, totalSpinTime);
 	startAngle += (spinAngle * pi) / 180;
 	drawWheel();
 	spinTimeout = setTimeout("rotateWheel()", 10);
@@ -289,9 +291,12 @@ function rotateWheel() {
 
 function stopWheelAndGetPlayer() {
 	clearTimeout(spinTimeout);
-	var degrees = (startAngle * 180) / pi;
-	var arcd = (arc * 180) / pi;
-	var index = Math.floor((360 - (degrees % 360)) / arcd);
+	// startAngle repersents total radians wheel rotated
+	startAngle %= 2 * pi;
+
+	// sartAngle is subtracted from 2pi coz we are drawing the wheel in anticlockwise dir
+	// and start angle is also in anticlockwise dir
+	var index = Math.floor((2 * pi - startAngle) / anglePerSector);
 	tdPopup(players[index]);
 }
 
