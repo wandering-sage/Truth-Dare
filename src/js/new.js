@@ -109,6 +109,7 @@ function addPlayers() {
 
 function tdPopup(person) {
 	spinBtn.disabled = false;
+	addBtn.disabled = false;
 
 	// openPopup returns a destructor function
 	let closePopup = openPopup();
@@ -259,8 +260,9 @@ function drawWheel() {
 }
 
 function spin() {
-	// so that user cant press spin button twice or more
+	// so that user cant press any button while wheel is spinning
 	spinBtn.disabled = true;
+	addBtn.disabled = true;
 
 	spinAngleStart = Math.random() * 10 + 10;
 	spinTime = 0;
