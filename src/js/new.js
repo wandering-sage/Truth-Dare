@@ -133,7 +133,7 @@ function tdPopup(person) {
 	// *****************Functions*****************
 
 	function showQues(type) {
-		function ret() {
+		return function ret() {
 			closePopup();
 			// openPopup returns a destructor function
 			let closeIt = openPopup();
@@ -162,8 +162,7 @@ function tdPopup(person) {
 			doneBtn.className = "btn btn-done";
 			doneBtn.onclick = closeIt;
 			popup.appendChild(doneBtn);
-		}
-		return ret;
+		};
 	}
 }
 
@@ -176,12 +175,10 @@ function openPopup() {
 	popup.classList.add("popup");
 	document.body.appendChild(popup);
 
-	return closePopup;
-
-	function closePopup() {
+	return function closePopup() {
 		blurScr.remove();
 		popup.remove();
-	}
+	};
 }
 
 function createEl(tagName, text) {
@@ -284,6 +281,8 @@ function rotateWheel() {
 	// to slow down the wheel near end by reducing the angle of rotation per loop
 	var spinAngle =
 		spinSpeed - easeOut(elapsedSpinTime, 0, spinSpeed, totalSpinTime);
+
+	//startAngle is in rad and spinAngle is in deg
 	startAngle += (spinAngle * pi) / 180;
 	drawWheel();
 	spinTimeout = setTimeout("rotateWheel()", 10);
