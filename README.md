@@ -19,8 +19,8 @@
 
 ## Project in Action
 
-<img src="src/Images/Capture1.PNG">
-<img src="src/Images/capture.gif">
+<img src="Images/Capture1.PNG">
+<img src="Images/capture.gif">
 
 ## Getting Started
 - Clone this repo and unzip the folder wherever you want.
