@@ -9,21 +9,21 @@ const truthQues = [
 	"Tell us something you don’t want us to know.",
 	"Do you have any fetishes?",
 	"What's the most drunk you've ever been?",
-	"Have you ever stayed friends with someone because it benefitted you beyond just the friendship?",
+	"What is the biggest lie you ever told your parents?",
 ];
 const dareQues = [
 	"Show the last five people you texted and what the messages said",
-	"Say something dirty to the person on your left",
+	"Let another person post a status on your behalf.",
 	"Keep your eyes closed until it's your go again",
 	"Pole dance with an imaginary pole",
 	"Talk in an accent for the next 3 rounds.",
 	"Attempt to do a magic trick.",
 	"Give someone your phone and let them send one text to anyone in your contacts.",
-	"Write or draw something embarrassing somewhere on your body with a permanent marker.",
+	"Write or draw something embarrassing somewhere on your body with a marker.",
 	"Let the person to your left draw on your face with a pen.",
-	"Seduce a member of the same gender in the group.",
-	"Send a sext to the last person in your phonebook",
-	"Choose someone from the group to give you a spanking.",
+	"Do a prank call on one of your family members",
+	"Repeat everything the person to your right says until your next turn.",
+	"Lay on the floor and act like a sizzling piece of bacon.",
 ];
 var players = [];
 
